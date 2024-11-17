@@ -9,4 +9,5 @@
 /vendor/
 .env
 secrets/
+
 ###< symfony/framework-bundle ###

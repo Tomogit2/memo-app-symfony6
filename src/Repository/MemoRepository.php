@@ -6,9 +6,6 @@ use App\Entity\Memo;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-/**
- * @extends ServiceEntityRepository<Memo>
- */
 class MemoRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
@@ -16,28 +13,25 @@ class MemoRepository extends ServiceEntityRepository
         parent::__construct($registry, Memo::class);
     }
 
-    //    /**
-    //     * @return Memo[] Returns an array of Memo objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('m')
-    //            ->andWhere('m.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('m.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    public function findAllMemos(): array
+    {
+        return $this->findAll();
+    }
 
-    //    public function findOneBySomeField($value): ?Memo
-    //    {
-    //        return $this->createQueryBuilder('m')
-    //            ->andWhere('m.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+    public function findMemoById($id): ?Memo
+    {
+        return $this->find($id);
+    }
+
+    public function saveMemo($memo): void
+    {
+        $this->_em->persist($memo);
+        $this->_em->flush();
+    }
+
+    public function deleteMemo($memo): void
+    {
+        $this->_em->remove($memo);
+        $this->_em->flush();
+    }
 }

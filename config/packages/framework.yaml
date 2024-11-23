@@ -9,6 +9,10 @@ framework:
     #esi: true
     #fragments: true
 
+    router:
+        resource: '%kernel.project_dir%/config/routes.yaml'
+        type: yaml
+
 when@test:
     framework:
         test: true

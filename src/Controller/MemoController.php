@@ -22,6 +22,7 @@ class MemoController extends AbstractController
 
         return $this->render('memo/index.html.twig', [
             'memos' => $memos,
+            'controller_name' => 'MemoController', 
         ]);
     }
 

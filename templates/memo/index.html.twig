@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Memo App</title>
-</head>
-<body>
-    <h1>{{ controller_name }}</h1>
-    <h1>Welcome to the Memo App</h1>
-</body>
-</html>
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>Memos</h1>
+    <form action="{{ path('memo_create') }}" method="POST">
+        <button type="submit">メモを作成</button>
+    </form>
+    <ul>
+        {% for memo in memos %}
+            <li>{{ memo.content }}</li>
+            <a href="{{ path('memo_edit', {'id': memo.getId() }) }}">Edit</a>
+            <a href="{{ path('memo_delete', {'id': memo.getId() }) }}">Delete</a>
+        {% endfor %}
+    </ul>
+{% endblock %}

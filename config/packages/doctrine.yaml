@@ -6,6 +6,9 @@ doctrine:
         # either here or in the DATABASE_URL env var (see .env file)
         #server_version: '16'
 
+        driver: 'pdo_mysql' # MySQLを使用することを指定
+        server_version: '8.0.40' # 実際のMySQLバージョンを指定
+
         profiling_collect_backtrace: '%kernel.debug%'
         use_savepoints: true
     orm:

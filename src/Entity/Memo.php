@@ -2,33 +2,33 @@
 
 namespace App\Entity;
 
-use App\Repository\MemoRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: MemoRepository::class)]
+#[ORM\Entity]
 class Memo
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(type: Types::INTEGER)]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $Memo = null;
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $content = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getMemo(): ?string
+    public function getContent(): ?string
     {
-        return $this->Memo;
+        return $this->content;
     }
 
-    public function setMemo(string $Memo): static
+    public function setContent(string $content): static
     {
-        $this->Memo = $Memo;
+        $this->content = $content;
 
         return $this;
     }

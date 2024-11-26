@@ -25,13 +25,15 @@ class MemoRepository extends ServiceEntityRepository
 
     public function saveMemo($memo): void
     {
-        $this->_em->persist($memo);
-        $this->_em->flush();
+        $entityManager = $this->getEntityManager(); // 修正ポイント
+        $entityManager->persist($memo);
+        $entityManager->flush();
     }
 
     public function deleteMemo($memo): void
     {
-        $this->_em->remove($memo);
-        $this->_em->flush();
+        $entityManager = $this->getEntityManager(); // 修正ポイント
+        $entityManager->remove($memo);
+        $entityManager->flush();
     }
 }

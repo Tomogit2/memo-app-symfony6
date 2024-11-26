@@ -17,6 +17,9 @@ class Memo
     #[ORM\Column(type: Types::TEXT)]
     private ?string $content = null;
 
+    #[ORM\Column(type: Types::BOOLEAN)]
+    private bool $isImportant = false; // デフォルト値
+
     public function getId(): ?int
     {
         return $this->id;
@@ -31,6 +34,17 @@ class Memo
     {
         $this->content = $content;
 
+        return $this;
+    }
+
+    public function getIsImportant(): bool
+    {
+        return $this->isImportant;
+    }
+
+    public function setIsImportant(bool $isImportant): static
+    {
+        $this->isImportant = $isImportant;
         return $this;
     }
 }

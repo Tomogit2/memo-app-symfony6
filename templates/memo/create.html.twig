@@ -4,6 +4,7 @@
     <h1>Create Memo</h1>
     {{ form_start(form) }}
         {{ form_row(form.content) }}
+        {{ form_row(form.isImportant) }} {# 重要フラグ用チェックボックス #}
         <button type="submit">Create</button>
     {{ form_end(form) }}
 {% endblock %}

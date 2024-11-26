@@ -1,15 +1,22 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Memos{% endblock %}
+
 {% block content %}
     <h1>Memos</h1>
-    <form action="{{ path('memo_create') }}" method="POST">
-        <button type="submit">メモを作成</button>
-    </form>
+    <a href="{{ path('memo_create') }}">メモを作成</a>
     <ul>
         {% for memo in memos %}
-            <li>{{ memo.content }}</li>
-            <a href="{{ path('memo_edit', {'id': memo.getId() }) }}">Edit</a>
-            <a href="{{ path('memo_delete', {'id': memo.getId() }) }}">Delete</a>
+            <li>
+                {% if memo.isImportant %}
+                    <strong>【重要フラグ】 {{ memo.content }}</strong>
+                {% else %}
+                    {{ memo.content }}
+                {% endif %}
+                <br>
+                <a href="{{ path('memo_edit', {'id': memo.id}) }}">Edit</a>
+                <a href="{{ path('memo_delete', {'id': memo.id}) }}">Delete</a>
+            </li>
         {% endfor %}
     </ul>
 {% endblock %}

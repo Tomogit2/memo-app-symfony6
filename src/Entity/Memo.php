@@ -20,6 +20,14 @@ class Memo
     #[ORM\Column(type: Types::BOOLEAN)]
     private bool $isImportant = false; // デフォルト値
 
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTime $createdAt = null;
+
+    public function __construct()
+{
+    $this->createdAt = new \DateTime();
+}
+
     public function getId(): ?int
     {
         return $this->id;
@@ -47,4 +55,16 @@ class Memo
         $this->isImportant = $isImportant;
         return $this;
     }
+
+    public function getCreatedAt(): ?\DateTime
+{
+    return $this->createdAt;
+}
+
+public function setCreatedAt(\DateTime $createdAt): static
+{
+    $this->createdAt = $createdAt;
+    return $this;
+}
+
 }
